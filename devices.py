@@ -27,14 +27,16 @@ class Driver:
 
     def simulate(self):
         if (self.counter < 6):
-            self.motor.printData(self.index)
-            self.writer.write(self.motor.data)
-            self.timeMachine.printData(self.index)
-            self.writer.write(self.timeMachine.data)
-            self.gyroscope.printData(self.index)
-            self.writer.write(self.gyroscope.data)
-            self.gps.printData(self.index)
-            self.writer.write(self.gps.data)
+            # run a loop to generate 8 messages per second
+            for x in range(2):
+                self.motor.printData(self.index)
+                self.writer.write(self.motor.data)
+                self.timeMachine.printData(self.index)
+                self.writer.write(self.timeMachine.data)
+                self.gyroscope.printData(self.index)
+                self.writer.write(self.gyroscope.data)
+                self.gps.printData(self.index)
+                self.writer.write(self.gps.data)
             self.counter += 1
         else:
             if (self.counter == 6 and self.index < 4):
